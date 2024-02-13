@@ -1,0 +1,34 @@
+name: Playwright Tests
+on:
+  # push:
+  #   branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers (Chrome)
+      run: npx playwright install chromium
+    - name: Run Cucumber tests
+      run: npm test
+    - name: Archive Test Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: Report
+        path: test-results
+        retention-days: 2
+    - name: Deploy HTML reports to GitHub Page
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: test-results/reports

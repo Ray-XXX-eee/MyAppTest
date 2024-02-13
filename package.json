@@ -1,0 +1,19 @@
+{
+  "name": "myapptest",
+  "version": "1.0.0",
+  "description": "npm version check -  npm -v | 10.2.4 install playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.17"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.3"
+  }
+}
