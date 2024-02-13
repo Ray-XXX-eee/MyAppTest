@@ -18,6 +18,7 @@ test.describe('Login page tests',()=>{
     context = await browser.newContext();
     page = await context.newPage();
     loginPage = new LoginPage(page)
+    
   })
 
   test.beforeEach(async ()=>{
@@ -43,7 +44,7 @@ test.describe('Login page tests',()=>{
 
     //assert
     // Expects Dashboard page
-    page.waitForTimeout(1000*3)
+    await page.waitForLoadState()
     await expect(page.locator("a:has-text('home')").first()).toBeVisible();
   });
 
@@ -60,7 +61,7 @@ test.describe('Login page tests',()=>{
 
     //assert
     // Expects Dashboard page
-    page.waitForTimeout(1000*3)
+    await page.waitForLoadState()
     await expect(page.locator('a:has-text("Home")').first()).toBeVisible();
   });
 

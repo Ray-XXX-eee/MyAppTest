@@ -24,11 +24,11 @@ jobs:
       if: always()
       with:
         name: Report
-        path: test-results
+        path: playwright-report
         retention-days: 2
     - name: Deploy HTML reports to GitHub Page
       uses: peaceiris/actions-gh-pages@v3
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: test-results/reports
+        publish_dir: playwright-report
